@@ -4,8 +4,16 @@ from crewai.tools import tool
 from firecrawl import FirecrawlApp, ScrapeOptions
 
 
-# @tool
+@tool
 def web_search_tool(query: str):
+    """
+    Web Search Tool.
+    Args:
+        query: str
+            The query to search the web for.
+    Returns
+        A list of search results with the website content in Markdown format.
+    """
     app = FirecrawlApp(api_key=os.getenv("FIRECRAWL_API_KEY"))
 
     response = app.search(
@@ -38,5 +46,3 @@ def web_search_tool(query: str):
         cleaned_chunks.append(cleaned_result)
 
     return cleaned_chunks
-
-print(web_search_tool("remote jobs in europe rust"))
